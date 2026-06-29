@@ -2,6 +2,9 @@
 - 변경 사항의 핵심을 간단히 작성해 주세요.
 - 예: 음성 녹음 업로드 PoC 범위를 문서화했습니다.
 
+## Related Issue
+- GitHub Issues: #이슈번호
+
 ## Changes
 
 주요 변경점:
