@@ -1,5 +1,5 @@
-import { SetupReadyCard } from '@/features/webview-setup/ui/setup-ready-card';
+import { TossLoginPanel } from '@/features/auth/ui/toss-login-panel';
 
 export default function HomePage() {
-  return <SetupReadyCard />;
+  return <TossLoginPanel />;
 }

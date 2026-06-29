@@ -1,0 +1,119 @@
+.page {
+  min-height: 100vh;
+  display: grid;
+  align-items: center;
+  padding: 24px 20px;
+}
+
+.panel {
+  width: min(100%, 520px);
+  margin: 0 auto;
+  display: grid;
+  gap: 22px;
+}
+
+.header {
+  display: grid;
+  gap: 8px;
+}
+
+.kicker {
+  margin: 0;
+  color: #0057ff;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.title {
+  margin: 0;
+  color: #191f28;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.form {
+  display: grid;
+  gap: 14px;
+}
+
+.status {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #e5e8eb;
+  border-radius: 8px;
+  padding: 13px 15px;
+  background: #ffffff;
+  color: #333d4b;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.statusDot {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #8b95a1;
+}
+
+.statusDot[data-status='loggingIn'],
+.statusDot[data-status='posting'] {
+  background: #f2b94b;
+}
+
+.statusDot[data-status='succeeded'] {
+  background: #00a661;
+}
+
+.statusDot[data-status='failed'] {
+  background: #e42939;
+}
+
+.result {
+  display: grid;
+  gap: 12px;
+  border: 1px solid #e5e8eb;
+  border-radius: 8px;
+  padding: 16px;
+  background: #ffffff;
+}
+
+.resultHeader {
+  display: grid;
+  gap: 4px;
+}
+
+.resultTitle {
+  margin: 0;
+  color: #191f28;
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.resultDetail {
+  margin: 0;
+  color: #6b7684;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.resultBody {
+  max-height: 260px;
+  overflow: auto;
+  margin: 0;
+  border-radius: 8px;
+  padding: 12px;
+  background: #f2f4f6;
+  color: #191f28;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

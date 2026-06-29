@@ -5,7 +5,7 @@
 - 문서 번호: `s00`
 - 문서 타입: frontend
 - 대상 기능: 토스 로그인 클라이언트 골격
-- 현재 단계: Phase 0.5
+- 현재 단계: Phase 0.5 구현
 - 마지막 업데이트: 2026-06-29
 
 ## 문서 번호 규칙
@@ -115,6 +115,19 @@ graph TD
 | 인증 helper | `appLogin` bridge 탐색과 인증 서버 POST |
 | 테스트 | bridge 없음, payload 생성, 인가 코드 마스킹 확인 |
 
+## 구현 파일
+
+| 파일 | 역할 |
+| --- | --- |
+| `src/features/auth/ui/toss-login-panel.tsx` | 토스 로그인 시작, 인증 서버 URL 입력, 결과 상태 표시 |
+| `src/features/auth/ui/toss-login-panel.module.css` | 로그인 화면 스타일 |
+| `src/features/auth/lib/request-toss-login.ts` | AppsInToss WebView SDK의 `appLogin()` 호출 |
+| `src/features/auth/model/toss-login-flow.ts` | 요청 payload 생성, URL 검증, 인가 코드 마스킹 |
+| `src/shared/api/toss-auth.ts` | 인증 서버로 `authorizationCode` / `referrer` 전달 |
+| `src/features/auth/model/toss-login-flow.test.ts` | payload, URL 검증, 응답 마스킹 테스트 |
+
+홈 화면은 Phase 0.5 검증을 위해 `src/app/page.tsx`에서 로그인 화면을 바로 렌더링한다.
+
 ## 클라이언트 계약
 
 ### 요청
@@ -163,11 +176,20 @@ Content-Type: application/json
 
 ## 검증
 
-문서 리뷰에서 아래 내용을 확인한다.
+구현 PR에서는 아래 내용을 확인한다.
 
-- AppsInToss bridge가 없으면 SDK 없음 상태를 반환한다.
+- AppsInToss bridge가 없는 일반 브라우저에서는 토스 앱 WebView 환경 안내를 표시한다.
 - `authorizationCode`, `referrer`를 인증 서버 URL로 JSON POST한다.
 - 화면 표시용 응답에서 인가 코드 원문을 마스킹한다.
+
+로컬 검증 명령:
+
+```bash
+npm test
+npm run typecheck
+npm run lint
+npm run build
+```
 
 ## 참고
 
