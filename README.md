@@ -1,58 +1,43 @@
 # 말하는 운동기록
 
-AppsInToss WebView 환경에서 음성 기반 운동 기록 앱을 만들기 위한 프로젝트입니다.
+AppsInToss WebView 방식으로 개발하는 음성 기반 운동 기록 미니앱입니다.
 
-현재 목표는 전체 AI 기능이 아니라 **Phase 0: WebView 녹음 업로드 확인**입니다.
-
-내부 개발용 기준 문서:
-
-```txt
-docs/technical-spec.md
-```
-
-## 현재 범위
-
-- 브라우저/WebView에서 `getUserMedia`로 마이크 권한 요청
-- `MediaRecorder`로 음성 녹음
-- 녹음 Blob을 테스트 API로 `multipart/form-data` 업로드
-- 테스트 API 응답을 화면에 표시
-
-아직 Oracle 서버, `whisper.cpp`, LLM 구조화는 연결하지 않았습니다.
-
-## 현재 제외 범위
-
-- Oracle Always Free 서버
-- whisper.cpp STT
-- Ollama/qwen LLM
-- 운동 기록 JSON 생성
-- 저장 기능
-- 로그인/사용자 식별
+현재 브랜치의 목표는 Next.js 기반 WebView 프론트엔드 초기 설정입니다.
 
 ## 실행
 
-```bash
-python3 -m http.server 5173
-```
+Node.js 20.9 이상을 사용합니다.
 
-브라우저에서 아래 주소를 엽니다.
+```bash
+npm install
+npm run dev
+```
 
 ```txt
-http://localhost:5173
+http://localhost:3000
 ```
 
-테스트 API URL은 화면의 입력칸에서 바꿀 수 있습니다. 기본값은 `https://httpbin.org/post`입니다.
+## 검증
 
-## Phase 0 검증 기준
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
 
-- 페이지가 정상 표시된다.
-- 마이크 권한 요청이 뜬다.
-- 5~15초 음성을 녹음할 수 있다.
-- 녹음 후 오디오 미리듣기가 재생된다.
-- 테스트 API로 업로드 요청이 전송된다.
-- HTTP status와 response body가 화면에 표시된다.
+## 구조
 
-## 주의
+```txt
+src/
+  app/
+  features/
+  shared/
+```
 
-마이크 API는 보안 컨텍스트에서만 동작합니다. 로컬 개발에서는 `localhost`가 허용되지만, 실제 WebView 또는 모바일 브라우저 테스트에서는 HTTPS 배포 URL을 사용해야 합니다.
+Next.js App Router를 사용하되, 기능 코드는 FSD 기준으로 `features`와 `shared` 아래에 둡니다.
 
-테스트 API로 실제 민감한 음성을 보내지 마세요. 실제 서버 연동 전까지는 녹음/업로드 동작 확인용 샘플 음성만 사용합니다.
+## AppsInToss
+
+AppsInToss WebView SDK 설정은 `granite.config.ts`에 둡니다.
+
+Next.js는 WebView에서 실행할 정적 클라이언트 앱 빌드 도구로 사용합니다. 토큰 교환, mTLS, 서버 API 구현은 별도 backend 작업에서 진행합니다.
