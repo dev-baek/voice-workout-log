@@ -1,0 +1,76 @@
+.page {
+  min-height: 100vh;
+  display: grid;
+  align-items: center;
+  padding: 24px 20px;
+}
+
+.panel {
+  width: min(100%, 520px);
+  margin: 0 auto;
+  display: grid;
+  gap: 24px;
+}
+
+.header {
+  display: grid;
+  gap: 10px;
+}
+
+.title {
+  margin: 0;
+  color: #191f28;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.description {
+  margin: 0;
+  color: #4e5968;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.statusList {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.statusItem {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #e5e8eb;
+  border-radius: 8px;
+  padding: 14px 16px;
+  background: #ffffff;
+  color: #333d4b;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #0057ff;
+}
+
+.action {
+  display: grid;
+  gap: 8px;
+}
+
+.caption {
+  margin: 0;
+  color: #8b95a1;
+  font-size: 13px;
+  line-height: 1.5;
+}
