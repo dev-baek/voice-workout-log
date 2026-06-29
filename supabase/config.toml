@@ -1,0 +1,4 @@
+project_id = "voice-workout-log"
+
+[functions.toss-login]
+verify_jwt = false
