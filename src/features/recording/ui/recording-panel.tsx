@@ -1,16 +1,12 @@
 'use client';
 
-import { Button } from '@toss/tds-mobile';
 import { useEffect, useRef, useState } from 'react';
 
 import { createAudioRecorder, isPermissionDeniedError, isRecordingSupported, type AudioRecorderSession } from '../lib/create-audio-recorder';
-import {
-  canRequestRecording,
-  formatRecordingDuration,
-  getRecordingStatusText,
-  type RecordingStatus,
-} from '../model/recording-state';
+import type { RecordingStatus } from '../model/recording-state';
+import { RecordingControls } from './recording-controls';
 import styles from './recording-panel.module.css';
+import { WorkoutDashboard } from './workout-dashboard';
 
 export function RecordingPanel() {
   const [status, setStatus] = useState<RecordingStatus>('idle');
@@ -61,40 +57,23 @@ export function RecordingPanel() {
 
   return (
     <main className={styles.page}>
-      <section className={styles.panel} aria-labelledby="page-title">
+      <div className={styles.shell}>
         <header className={styles.header}>
-          <p className={styles.kicker}>Recording PoC</p>
-          <h1 id="page-title" className={styles.title}>말하는 운동기록</h1>
-          <p className={styles.description}>운동 내용을 말로 남겨보세요.</p>
+          <h1 className={styles.title}>말하는 운동기록</h1>
+          <p className={styles.description}>오늘 운동을 말로 남겨보세요.</p>
         </header>
 
-        <div className={styles.status} data-status={status} aria-live="polite">
-          <span className={styles.statusDot} aria-hidden="true" />
-          <span>{getRecordingStatusText(status)}</span>
+        <div className={styles.sectionStack}>
+          <RecordingControls
+            status={status}
+            audioUrl={audioUrl}
+            durationMs={durationMs}
+            onStart={handleStart}
+            onStop={handleStop}
+          />
+          <WorkoutDashboard />
         </div>
-
-        <div className={styles.actions}>
-          <Button
-            display="full"
-            size="large"
-            disabled={!canRequestRecording(status)}
-            onClick={handleStart}
-          >
-            녹음 시작
-          </Button>
-          <Button display="full" size="large" disabled={status !== 'recording'} onClick={handleStop}>
-            녹음 중지
-          </Button>
-        </div>
-
-        {audioUrl == null ? null : (
-          <section className={styles.preview} aria-labelledby="recording-preview-title">
-            <h2 id="recording-preview-title" className={styles.previewTitle}>미리듣기</h2>
-            <p className={styles.previewMeta}>{formatRecordingDuration(durationMs)}</p>
-            <audio className={styles.audio} src={audioUrl} controls />
-          </section>
-        )}
-      </section>
+      </div>
     </main>
   );
 }

@@ -1,0 +1,100 @@
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.metricItem,
+.section {
+  border: 1px solid #e5e8eb;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.metricItem {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  min-height: 76px;
+  padding: 13px 10px;
+}
+
+.metricItem span {
+  color: #6b7684;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.metricItem strong {
+  color: #191f28;
+  font-size: 19px;
+  line-height: 1.2;
+}
+
+.section {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: #191f28;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.workoutList,
+.volumeList {
+  display: grid;
+  gap: 10px;
+}
+
+.workoutItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  border-bottom: 1px solid #edf1f5;
+  padding-bottom: 10px;
+}
+
+.workoutItem:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.workoutItem h3, .workoutItem p {
+  margin: 0;
+}
+.workoutItem h3 {
+  color: #191f28;
+  font-size: 15px;
+  font-weight: 800;
+}
+.workoutItem p, .workoutItem span {
+  color: #6b7684;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.volumeRow {
+  display: grid;
+  grid-template-columns: 42px 1fr 42px;
+  gap: 10px;
+  align-items: center;
+  color: #4e5968;
+  font-size: 13px;
+}
+
+.volumeTrack {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #edf1f5;
+}
+
+.volumeTrack div {
+  height: 100%;
+  border-radius: inherit;
+  background: #3182f6;
+}

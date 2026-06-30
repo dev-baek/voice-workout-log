@@ -1,0 +1,99 @@
+.panel {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  border: 1px solid #dfe5ec;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 28px 18px 20px;
+  box-shadow: 0 16px 32px rgba(25, 31, 40, 0.06);
+}
+.micFrame {
+  width: 112px;
+  height: 112px;
+  display: grid;
+  place-items: center;
+  border: 2px solid #3182f6;
+  border-radius: 50%;
+  background: #f4f8ff;
+  color: #1b64da;
+  box-shadow: 0 0 0 12px #edf5ff;
+}
+.micFrame svg {
+  width: 46px;
+  height: 46px;
+}
+.micFrame[data-status="recording"] {
+  border-color: #f04452;
+  color: #f04452;
+  background: #fff5f5;
+  box-shadow: 0 0 0 12px #fff0f0;
+}
+.status { text-align: center; }
+.statusTitle {
+  margin: 0;
+  color: #1b64da;
+  font-size: 25px;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+.statusText {
+  margin: 6px 0 0;
+  color: #6b7684;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+.primaryButton,
+.secondaryButton {
+  min-height: 54px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 16px;
+  font-weight: 800;
+}
+.primaryButton {
+  background: #0064ff;
+  color: #ffffff;
+}
+.secondaryButton {
+  background: #eef4ff;
+  color: #4e5968;
+}
+.primaryButton:disabled, .secondaryButton:disabled {
+  opacity: 0.42;
+}
+.primaryButton svg, .secondaryButton svg {
+  width: 22px;
+  height: 22px;
+}
+.preview {
+  display: grid;
+  gap: 10px;
+  border-top: 1px solid #edf1f5;
+  padding-top: 14px;
+}
+.previewMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #6b7684;
+  font-size: 14px;
+}
+.previewMeta strong {
+  color: #191f28;
+}
+.audio {
+  width: 100%;
+}

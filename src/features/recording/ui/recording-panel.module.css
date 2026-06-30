@@ -1,13 +1,14 @@
 .page {
   min-height: 100vh;
-  display: grid;
-  align-items: center;
-  padding: 24px 20px;
+  padding: 22px 18px 36px;
+  background: #f7f8fa;
+  overflow-x: hidden;
 }
 
-.panel {
-  width: min(100%, 520px);
-  margin: 0 auto;
+.shell {
+  width: 100%;
+  max-width: 354px;
+  margin: 0;
   display: grid;
   gap: 22px;
 }
@@ -15,19 +16,13 @@
 .header {
   display: grid;
   gap: 8px;
-}
-
-.kicker {
-  margin: 0;
-  color: #0064ff;
-  font-size: 13px;
-  font-weight: 800;
+  padding-top: 8px;
 }
 
 .title {
   margin: 0;
   color: #191f28;
-  font-size: 32px;
+  font-size: 31px;
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: 0;
@@ -37,60 +32,22 @@
   margin: 0;
   color: #4e5968;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.55;
 }
 
-.status,
-.preview {
-  border: 1px solid #e5e8eb;
-  border-radius: 8px;
-  background: #ffffff;
-  padding: 16px;
-}
-.status {
-  min-height: 56px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #333d4b;
-  font-size: 15px;
-  font-weight: 700;
+.sectionStack {
+  display: grid;
+  gap: 18px;
 }
 
-.statusDot {
-  width: 9px;
-  height: 9px;
-  flex: 0 0 auto;
-  border-radius: 999px;
-  background: #8b95a1;
-}
-.status[data-status="recording"] .statusDot {
-  background: #f04452;
-}
-.status[data-status="recorded"] .statusDot {
-  background: #00a661;
-}
-.actions {
-  display: grid;
-  gap: 10px;
-}
-.preview {
-  display: grid;
-  gap: 10px;
-}
-.previewTitle,
-.previewMeta {
-  margin: 0;
-}
-.previewTitle {
-  color: #191f28;
-  font-size: 17px;
-  font-weight: 800;
-}
-.previewMeta {
-  color: #6b7684;
-  font-size: 14px;
-}
-.audio {
-  width: 100%;
+@media (min-width: 760px) {
+  .page {
+    padding-top: 36px;
+  }
+
+  .shell {
+    width: calc(100vw - 36px);
+    max-width: 680px;
+    margin: 0 auto;
+  }
 }
