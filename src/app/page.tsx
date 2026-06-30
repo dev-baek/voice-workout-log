@@ -1,5 +1,5 @@
-import { SetupReadyCard } from '@/features/webview-setup/ui/setup-ready-card';
+import { RecordingPanel } from '@/features/recording/ui/recording-panel';
 
 export default function HomePage() {
-  return <SetupReadyCard />;
+  return <RecordingPanel />;
 }

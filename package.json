@@ -9,6 +9,7 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "eslint .",
+    "test": "tsx --test src/features/recording/model/recording-state.test.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
