@@ -1,6 +1,7 @@
 export const weeklyMetrics = [
   { label: '이번 주 운동', value: '3회' },
   { label: '총 세트', value: '28세트' },
+  { label: '총 반복', value: '186회' },
   { label: '총 볼륨', value: '8.4t' },
 ] as const;
 
