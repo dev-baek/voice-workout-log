@@ -12,6 +12,8 @@ export function RecordingPanel() {
   const [status, setStatus] = useState<RecordingStatus>('idle');
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [durationMs, setDurationMs] = useState(0);
+  const [mimeType, setMimeType] = useState('');
+  const [sizeBytes, setSizeBytes] = useState(0);
   const recorderRef = useRef<AudioRecorderSession | null>(null);
 
   useEffect(() => () => {
@@ -34,6 +36,8 @@ export function RecordingPanel() {
           const nextUrl = URL.createObjectURL(recording.blob);
           setAudioUrl(nextUrl);
           setDurationMs(recording.durationMs);
+          setMimeType(recording.mimeType);
+          setSizeBytes(recording.blob.size);
           setStatus('recorded');
           recorderRef.current = null;
         },
@@ -53,6 +57,8 @@ export function RecordingPanel() {
     if (audioUrl != null) URL.revokeObjectURL(audioUrl);
     setAudioUrl(null);
     setDurationMs(0);
+    setMimeType('');
+    setSizeBytes(0);
   }
 
   return (
@@ -68,6 +74,8 @@ export function RecordingPanel() {
             status={status}
             audioUrl={audioUrl}
             durationMs={durationMs}
+            mimeType={mimeType}
+            sizeBytes={sizeBytes}
             onStart={handleStart}
             onStop={handleStop}
           />

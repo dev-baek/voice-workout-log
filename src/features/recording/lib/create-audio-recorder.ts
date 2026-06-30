@@ -1,4 +1,4 @@
-import { selectAudioMimeType } from '../model/recording-state';
+import { MAX_RECORDING_DURATION_MS, selectAudioMimeType } from '../model/recording-state';
 
 export interface AudioRecording {
   blob: Blob;
@@ -27,6 +27,9 @@ export async function createAudioRecorder({
   const mimeType = selectAudioMimeType(MediaRecorder.isTypeSupported.bind(MediaRecorder));
   const recorder = new MediaRecorder(stream, mimeType.length > 0 ? { mimeType } : undefined);
   const startedAt = Date.now();
+  const timeoutId = window.setTimeout(() => {
+    if (recorder.state !== 'inactive') recorder.stop();
+  }, MAX_RECORDING_DURATION_MS);
 
   recorder.addEventListener('dataavailable', (event) => {
     if (event.data.size > 0) {
@@ -35,6 +38,7 @@ export async function createAudioRecorder({
   });
 
   recorder.addEventListener('stop', () => {
+    window.clearTimeout(timeoutId);
     stopStream(stream);
     onComplete({
       blob: new Blob(chunks, { type: recorder.mimeType || mimeType || 'audio/webm' }),
@@ -44,6 +48,7 @@ export async function createAudioRecorder({
   });
 
   recorder.addEventListener('error', (event) => {
+    window.clearTimeout(timeoutId);
     stopStream(stream);
     onError(event);
   });

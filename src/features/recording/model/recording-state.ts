@@ -7,6 +7,8 @@ export type RecordingStatus =
   | 'denied'
   | 'failed';
 
+export const MAX_RECORDING_DURATION_MS = 120_000;
+
 const statusText: Record<RecordingStatus, string> = {
   idle: '녹음 대기 중',
   unsupported: '녹음을 지원하지 않는 환경입니다.',
@@ -39,4 +41,18 @@ export function selectAudioMimeType(isSupported: (mimeType: string) => boolean) 
 
 export function formatRecordingDuration(durationMs: number) {
   return `${(Math.max(0, durationMs) / 1000).toFixed(1)}초`;
+}
+
+export function formatAudioFileSize(sizeBytes: number) {
+  const safeSize = Math.max(0, sizeBytes);
+
+  if (safeSize < 1024) {
+    return `${safeSize} B`;
+  }
+
+  if (safeSize < 1024 * 1024) {
+    return `${(safeSize / 1024).toFixed(1)} KB`;
+  }
+
+  return `${(safeSize / 1024 / 1024).toFixed(1)} MB`;
 }

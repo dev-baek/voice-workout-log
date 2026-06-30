@@ -1,5 +1,6 @@
 import {
   canRequestRecording,
+  formatAudioFileSize,
   formatRecordingDuration,
   getRecordingStatusText,
   type RecordingStatus,
@@ -11,6 +12,8 @@ interface RecordingControlsProps {
   status: RecordingStatus;
   audioUrl: string | null;
   durationMs: number;
+  mimeType: string;
+  sizeBytes: number;
   onStart: () => void;
   onStop: () => void;
 }
@@ -19,6 +22,8 @@ export function RecordingControls({
   status,
   audioUrl,
   durationMs,
+  mimeType,
+  sizeBytes,
   onStart,
   onStop,
 }: RecordingControlsProps) {
@@ -32,7 +37,7 @@ export function RecordingControls({
         <h2 id="recording-title" className={styles.statusTitle}>
           {getRecordingStatusText(status)}
         </h2>
-        <p className={styles.statusText}>운동명, 무게, 횟수, 세트 수를 자연스럽게 말해보세요.</p>
+        <p className={styles.statusText}>최대 2분 안에 운동명, 무게, 횟수, 세트 수를 말해보세요.</p>
       </div>
 
       <div className={styles.actions}>
@@ -51,6 +56,14 @@ export function RecordingControls({
           <div className={styles.previewMeta}>
             <span>방금 녹음</span>
             <strong>{formatRecordingDuration(durationMs)}</strong>
+          </div>
+          <div className={styles.previewMeta}>
+            <span>파일 형식</span>
+            <strong>{mimeType}</strong>
+          </div>
+          <div className={styles.previewMeta}>
+            <span>파일 크기</span>
+            <strong>{formatAudioFileSize(sizeBytes)}</strong>
           </div>
           <audio className={styles.audio} src={audioUrl} controls />
         </div>

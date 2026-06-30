@@ -3,8 +3,10 @@ import { describe, it } from 'node:test';
 
 import {
   canRequestRecording,
+  formatAudioFileSize,
   formatRecordingDuration,
   getRecordingStatusText,
+  MAX_RECORDING_DURATION_MS,
   selectAudioMimeType,
   type RecordingStatus,
 } from './recording-state';
@@ -54,5 +56,20 @@ describe('formatRecordingDuration', () => {
     assert.equal(formatRecordingDuration(0), '0.0초');
     assert.equal(formatRecordingDuration(1540), '1.5초');
     assert.equal(formatRecordingDuration(12690), '12.7초');
+  });
+});
+
+describe('MAX_RECORDING_DURATION_MS', () => {
+  it('limits recording sessions to two minutes', () => {
+    assert.equal(MAX_RECORDING_DURATION_MS, 120_000);
+  });
+});
+
+describe('formatAudioFileSize', () => {
+  it('formats audio blob sizes for upload checks', () => {
+    assert.equal(formatAudioFileSize(0), '0 B');
+    assert.equal(formatAudioFileSize(980), '980 B');
+    assert.equal(formatAudioFileSize(1536), '1.5 KB');
+    assert.equal(formatAudioFileSize(1_572_864), '1.5 MB');
   });
 });
